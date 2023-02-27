@@ -1,0 +1,15 @@
+<div class="overflow-y-scroll w-fit">
+  <table class="table-fixed border-collapse w-[360px]">
+    <tbody id="records-table">
+      <% records.reverse_each.with_index do |record, index| %>
+        <tr id="<%= dom_id(record) %>">
+          <td class="text-center border border-stone-900"><%= records_count - index %></td>
+          <td class="text-center border border-stone-900"><%= record.display_time %></td>
+          <td class="text-center border border-stone-900"><%= avg5(times[index..(index + 4)]) %></td>
+          <td class="text-center border border-stone-900"><%= avg12(times[index..(index + 11)]) %></td>
+          <td class="text-center border border-stone-900"><%= button_to "X", record, :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

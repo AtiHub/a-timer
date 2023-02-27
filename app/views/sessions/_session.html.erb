@@ -1,0 +1,14 @@
+<div id="records-container" class="flex flex-col items-center justify-start overflow-y-auto min-w-full w-full">
+  <table class="table-fixed border-collapse w-[360px]">
+    <thead>
+      <tr>
+        <th class="border border-stone-900">#</th>
+        <th class="border border-stone-900">Time</th>
+        <th class="border border-stone-900">Avg5</th>
+        <th class="border border-stone-900">Avg12</th>
+        <th class="border border-stone-900"></th>
+      </tr>
+    </thead>
+  </table>
+  <%= render partial: 'records/records_table', locals: { records: records, records_count: records.count, times: times } %>
+</div>

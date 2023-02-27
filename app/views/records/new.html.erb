@@ -1,0 +1,13 @@
+<turbo-frame id="record-frame" data-dashboard-target="recordFrame" class="flex flex-1 flex-col flex-wrap justify-start content-center">
+  <div class="flex justify-center w-full">
+    <div class="font-orbitron text-[160px] tabular-nums" data-dashboard-target="timerContainer" data-timer-status="standby">
+      <span id="sec">0</span>.<span id="msec">00</span>
+    </div>
+  </div>
+
+  <%= form_with(model: @record, url: records_path, method: :post, local: true, data: {"dashboard-target": "recordForm", "action": "dashboard#beforeSubmitRecord turbo:submit-end->dashboard#afterSubmitRecord"}) do |f| %>
+    <%= f.hidden_field :time, class: "text-[40px]", data: {"dashboard-target": "recordTimeInput"} %>
+    <%= f.hidden_field :session_id, value: params[:session_id], data: {"dashboard-target": "recordSessionIdInput"} %>
+    <%= f.hidden_field :scramble, value: '', data: {"dashboard-target": "recordScrambleInput"} %>
+  <% end %>
+</turbo-frame>

@@ -1,0 +1,15 @@
+<turbo-frame id="scramble-frame">
+  <div class="flex flex-row flex-nowrap justify-center w-full">
+    <select name="scramble-category-select" id="scramble-category-select" data-action="change->dashboard#changeScrambleCategory" data-dashboard-target="scrambleCategorySelect" class="mt-[20px] mb-[10px] mx-[20px] py-[0px]">
+      <% Scrambler::CATEGORIES.each do |c| %>
+        <option value="<%= c %>" <%= "selected" if c == category %>><%= c.titleize %></option>
+      <% end %>
+    </select>
+
+    <a href="scrambles?category=<%= @category %>" data-dashboard-target="newScrambleAnchor" class="flex flex-col justify-center text-center underline h-fit w-[40px] mt-[20px] hover:bg-black hover:text-white">new</a>
+  </div>
+
+  <div class="flex justify-center font-orbitron text-[36px] space-[20px]" data-dashboard-target="scrambleContainer">
+    <%= scramble.html_safe %>
+  </div>
+</turbo-frame>

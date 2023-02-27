@@ -1,0 +1,24 @@
+<div id="dashboard-container" data-controller="dashboard" data-action="keydown@window->dashboard#key" class="min-h-screen h-screen flex flex-col flex-nowrap justify-between bg-white">
+  <div id="header" class="flex h-fit border-b-[2px] border-slate-900">
+    <div id="logo-container" class="m-[20px]">
+      <img src="<%= asset_path('logo.png') %>" width="300">
+    </div>
+  </div>
+
+  <div id="main-container" class="flex flex-1 flex-nowrap flex-row justify-start max-h-full h-full overflow-x-hidden">
+    <div id="sessions-container" class="flex flex-col flex-nowrap justify-end min-w-[400px] w-fit my-[10px] mx-[10px] border-[1px] border-black max-h-screen">
+      <div class="my-[10px] text-center">Sessions</div>
+
+      <turbo-frame id="sessions-frame" src=<%= "/sessions"%> data-dashboard-target="sessionsFrame" class="flex flex-1 flex-col flex-nowrap justify-start overflow-y-auto">
+      </turbo-frame>
+    </div>
+
+    <div id="timer-container" class="flex flex-1 flex-col flex-wrap justify-center content-center">
+      <turbo-frame id="scramble-frame" src=<%= "/scrambles"%> data-dashboard-target="scrambleFrame" class="flex flex-col flex-wrap justify-center content-center">
+      </turbo-frame>
+    
+      <turbo-frame id="record-frame" src=<%= "/records/new"%> data-dashboard-target="recordFrame" class="flex flex-1 flex-col flex-wrap justify-center content-center">
+      </turbo-frame>
+    </div>
+  </div>
+</div>

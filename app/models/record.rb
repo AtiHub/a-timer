@@ -1,17 +1,12 @@
-module ApplicationHelper
-  def avg5(array)
-    return '-' if array.size != 5
+class Record < ApplicationRecord
+  belongs_to :session
 
-    display_time(array.sort[1..3].sum / 3)
-  end
+  validates :time, presence: true
 
-  def avg12(array)
-    return '-' if array.size != 12
+  def display_time
+    # format('%02d:%02d', ((time / 60) % 60), (time % 60))
+    # time.to_s.reverse.scan(/.{1,2}/).join('.').reverse
 
-    display_time(array.sort[1..10].sum / 10)
-  end
-
-  def display_time(time)
     msec = (time % 1000).to_s.rjust(3, '0')[0, 2]
     sec = ((time / 1000) % 60).to_s
     min = ((time / 1000 / 60) % 60).to_s
