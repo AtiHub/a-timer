@@ -1,14 +1,10 @@
-<div id="records-container" class="flex flex-col items-center justify-start overflow-y-auto min-w-full w-full">
-  <table class="table-fixed border-collapse w-[360px]">
-    <thead>
-      <tr>
-        <th class="border border-stone-900">#</th>
-        <th class="border border-stone-900">Time</th>
-        <th class="border border-stone-900">Avg5</th>
-        <th class="border border-stone-900">Avg12</th>
-        <th class="border border-stone-900"></th>
-      </tr>
-    </thead>
-  </table>
+<div id="records-container" class="flex flex-col items-center justify-start min-w-full w-full overflow-x-auto overflow-y-hidden">
+  <div class="grid grip-rows-1 grid-cols-5 gap-0 w-[360px]">
+    <div class="text-center box-border border-t border-b border-l border-gray-400">#</div>
+    <div class="text-center box-border border-t border-b border-l border-gray-400">Time</div>
+    <div class="text-center box-border border-t border-b border-l border-gray-400">Avg5</div>
+    <div class="text-center box-border border-t border-b border-l border-gray-400">Avg12</div>
+    <div class="text-center box-border border border-gray-400"></div>
+  </div>
   <%= render partial: 'records/records_table', locals: { records: records, records_count: records.count, times: times } %>
 </div>

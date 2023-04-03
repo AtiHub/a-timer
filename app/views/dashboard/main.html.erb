@@ -1,14 +1,13 @@
-<div id="dashboard-container" data-controller="dashboard" data-action="keydown@window->dashboard#key" class="min-h-screen h-screen flex flex-col flex-nowrap justify-between bg-white">
-  <div id="header" class="flex h-fit border-b-[2px] border-slate-900">
-    <div id="logo-container" class="m-[20px]">
-      <img src="<%= asset_path('logo.png') %>" width="300">
+<div id="dashboard-container" data-controller="dashboard" data-action="keydown@window->dashboard#key" class="flex flex-1 flex-col flex-nowrap justify-between min-h-screen h-screen max-h-screen bg-white">
+  <div id="header" class="flex flex-none h-[100px] border-b-[2px] border-gray-400 bg-slate-900">
+    <div id="logo-container" class="mx-[50px] my-[4px]">
+      <!--<img src="<%= asset_path('logo.png') %>" width="300">-->
+      <span class="font-bold text-[60px] text-gray-100 antialiased">A-Timer</span>
     </div>
   </div>
 
-  <div id="main-container" class="flex flex-1 flex-nowrap flex-row justify-start max-h-full h-full overflow-x-hidden">
-    <div id="sessions-container" class="flex flex-col flex-nowrap justify-end min-w-[400px] w-fit my-[10px] mx-[10px] border-[1px] border-black max-h-screen">
-      <div class="my-[10px] text-center">Sessions</div>
-
+  <div id="main-container" class="flex flex-1 flex-nowrap flex-row justify-start items-stretch min-h-0 bg-slate-900">
+    <div id="sessions-container" class="flex flex-col flex-nowrap justify-end min-w-[400px] max-w-[400px] w-fit max-h-full my-[10px] mx-[10px] border-[1px] border-gray-400">
       <turbo-frame id="sessions-frame" src=<%= "/sessions"%> data-dashboard-target="sessionsFrame" class="flex flex-1 flex-col flex-nowrap justify-start overflow-y-auto">
       </turbo-frame>
     </div>

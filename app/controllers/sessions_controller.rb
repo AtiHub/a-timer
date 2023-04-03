@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :set_browser_session
   before_action :set_sessions, only: [:index]
   before_action :set_selected_session, only: [:index]
 
@@ -12,18 +13,23 @@ class SessionsController < ApplicationController
     @records = @session.records
   end
 
-  def new
+  def create
+    @session = Session.create!(browser_session: @browser_session)
 
+    redirect_to(sessions_path(selected_session_id: @session.id))
   end
 
   def destroy
+    session = Session.find(params[:id])
+    session.destroy!
 
+    redirect_to(sessions_path)
   end
 
   private
 
   def set_sessions
-    @sessions ||= Session.all.order(created_at: :asc)
+    @sessions ||= Session.where(browser_session: @browser_session).order(created_at: :asc)
   end
 
   def set_selected_session
@@ -32,5 +38,15 @@ class SessionsController < ApplicationController
     else
       @sessions.first
     end
+
+    @selected_session ||= Session.create!(browser_session: @browser_session)
+  end
+
+  def set_browser_session
+    @browser_session = cookies[:browser_session]
+  end
+
+  def session_params
+    params.require(:session).permit(:browser_session, :category)
   end
 end

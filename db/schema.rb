@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_111605) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_125355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_111605) do
     t.integer "category", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "browser_session"
   end
 
 end

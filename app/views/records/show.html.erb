@@ -1,0 +1,28 @@
+<turbo-frame id="sessions-frame">
+  <div class="my-[10px] text-center">Record #<%= @index %></div>
+
+  <div class="flex flex-1 flex-col flex-nowrap overflow-y-auto">
+    <div class="grid grip-rows-1 grid-cols-2 gap-0">
+      <div class="text-center m-[10px]">Time:</div>
+      <div class="text-center m-[10px]"><%= @record.display_time %></div>
+    </div>
+
+    <div class="grid grip-rows-1 grid-cols-2 gap-0">
+      <div class="text-center m-[10px]">Scramble:</div>
+      <div class="text-center m-[10px]"><%= @record.scramble %></div>
+    </div>
+
+    <div class="flex flex-col flex-nowrap justify-center">
+      <div class="text-center m-[10px]">
+        <%= button_to @record, :method => :delete, class: 'w-full' do %>
+          <%= fa_icon "times", class: "fa-lg" %>
+        <% end %>
+      </div>
+      <div class="text-center m-[10px]">
+        <%= button_to sessions_path(selected_session_id: @record.session_id), :method => :get, class: 'w-full' do %>
+          <%= fa_icon "arrow-left", class: "fa-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>
