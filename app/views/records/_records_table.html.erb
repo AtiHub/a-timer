@@ -1,7 +1,7 @@
 <div class="flex flex-1 flex-col w-fit overflow-y-hidden">
   <div id="records-table" class="overflow-y-auto w-[360px]">
     <% records.reverse_each.with_index do |record, index| %>
-      <div id="<%= dom_id(record) %>"class="grid grip-rows-1 grid-cols-5 gap-0 w-[360px]>">
+      <div id="<%= dom_id(record) %>"class="grid grip-rows-1 grid-cols-5 gap-0 w-[360px]> min-w-[360px]>">
         <div class="text-center box-border border-t border-b border-l border-gray-400"><%= records_count - index %></div>
         <div class="text-center box-border border-t border-b border-l border-gray-400"><%= record.display_time %></div>
         <div class="text-center box-border border-t border-b border-l border-gray-400"><%= avg5(times[index..(index + 4)]) %></div>

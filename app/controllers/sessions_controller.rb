@@ -45,8 +45,4 @@ class SessionsController < ApplicationController
   def set_browser_session
     @browser_session = cookies[:browser_session]
   end
-
-  def session_params
-    params.require(:session).permit(:browser_session, :category)
-  end
 end

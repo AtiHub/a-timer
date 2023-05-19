@@ -15,6 +15,8 @@ export default class extends Controller {
     "timerContainer"
   ]
 
+  static classes = ["standby", "ready", "set", "running"]
+
   hi(){
     console.log("Hello, Stimulus!");
   }
@@ -51,16 +53,23 @@ export default class extends Controller {
 
   // KEY PRESS
 
-  key(event) {
+  keydown(event) {
     if(event.keyCode == 32) { // space
-      this.timerAction();
+      this.keydownTimerAction();
+    }
+  }
+
+  keyup(event) {
+    if(event.keyCode == 32) { // space
+      this.keyupTimerAction();
     }
   }
 
   // TIMER METHODS
 
-  static timerStatuses = ['standby', 'running'];
+  static timerStatuses = ['standby', 'ready', 'set', 'running'];
   interval;
+  timerReadyAt;
   timerStartAt;
   timeDiff;
 
@@ -73,6 +82,60 @@ export default class extends Controller {
     } else {
       timerContainer.dataset.timerStatus = "standby";
       this.stopTimer();
+    }
+  }
+
+  keydownTimerAction() {
+    let timerContainer = this.timerContainerTarget;
+
+    timerContainer.classList.remove(this.standbyClass, this.readyClass, this.setClass, this.runningClass);
+
+    switch(timerContainer.dataset.timerStatus) {
+      case "standby":
+        timerContainer.dataset.timerStatus = "ready";
+        timerContainer.classList.add(this.readyClass);
+        this.timerReadyAt = Date.now();
+        break;
+      case "ready":
+        if((Date.now() - this.timerReadyAt) >= 50) {
+          timerContainer.dataset.timerStatus = "set";
+          timerContainer.classList.add(this.setClass);
+        }
+        break;
+      case "set":
+        timerContainer.classList.add(this.setClass);
+        break;
+      case "running":
+        this.stopTimer();
+        timerContainer.dataset.timerStatus = "standby";
+        timerContainer.classList.add(this.standbyClass);
+        break;
+      default:
+        timerContainer.dataset.timerStatus = "standby";
+        timerContainer.classList.add(this.standbyClass);
+        break;
+    }
+  }
+
+  keyupTimerAction() {
+    let timerContainer = this.timerContainerTarget;
+
+    timerContainer.classList.remove(this.standbyClass, this.readyClass, this.setClass, this.runningClass);
+
+    switch(timerContainer.dataset.timerStatus) {
+      case "ready":
+        timerContainer.dataset.timerStatus = "standby";
+        timerContainer.classList.add(this.standbyClass);
+        break;
+      case "set":
+        timerContainer.dataset.timerStatus = "running";
+        timerContainer.classList.add(this.runningClass);
+        this.startTimer();
+        break;
+      default:
+        timerContainer.dataset.timerStatus = "standby";
+        timerContainer.classList.add(this.standbyClass);
+        break;
     }
   }
 
@@ -119,5 +182,9 @@ export default class extends Controller {
   submitRecord() {
     this.recordTimeInputTarget.value = this.timeDiff;
     this.recordFormTarget.requestSubmit();
+  }
+
+  setWhiteColor() {
+
   }
 }

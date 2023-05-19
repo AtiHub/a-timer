@@ -1,4 +1,12 @@
-<div id="dashboard-container" data-controller="dashboard" data-action="keydown@window->dashboard#key" class="flex flex-1 flex-col flex-nowrap justify-between min-h-screen h-screen max-h-screen bg-white">
+<div id="dashboard-container"
+      data-controller="dashboard"
+      data-action="keydown@window->dashboard#keydown keyup@window->dashboard#keyup"
+      class="flex flex-1 flex-col flex-nowrap justify-between min-h-screen h-screen max-h-screen bg-white"
+      data-dashboard-standby-class="text-gray-200"
+      data-dashboard-ready-class="text-red-700"
+      data-dashboard-set-class="text-green-600"
+      data-dashboard-running-class="text-gray-200"
+>
   <div id="header" class="flex flex-none h-[100px] border-b-[2px] border-gray-400 bg-slate-900">
     <div id="logo-container" class="mx-[50px] my-[4px]">
       <!--<img src="<%= asset_path('logo.png') %>" width="300">-->
